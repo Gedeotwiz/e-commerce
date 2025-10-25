@@ -1,27 +1,21 @@
-"use client";
-import React from "react";
-import { Layout } from "antd";
-import clsx from "clsx";
+'use client'
+import React from 'react'
+import { Layout } from 'antd'
+import clsx from 'clsx'
 
-const { Content } = Layout;
+const { Content } = Layout
 
 type GContainerProps = {
-  children: React.ReactNode;
-  className?: string;
-};
+    children: React.ReactNode
+    className?: string
+}
 
 export const GContainer = ({ children, className }: GContainerProps) => {
-  return (
-    <Layout>
-      <Content
-        className={clsx(
-          className
-        )}
-      >
-        {children}
-      </Content>
-    </Layout>
-  );
-};
+    return (
+        <Layout>
+            <Content className={clsx(className)}>{children}</Content>
+        </Layout>
+    )
+}
 
-export default GContainer;
+export default GContainer
