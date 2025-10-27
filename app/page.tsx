@@ -1,8 +1,5 @@
 import { HomePage } from '@/componemts/Home'
-import GButton from '@/componemts/Share/GButton'
 import GContainer from '@/componemts/Share/GContainer'
-import GText from '@/componemts/Share/GText'
-import { Colors } from '@/contants/colors'
 
 export default function Home() {
     return (

@@ -3,9 +3,9 @@ import { ITypographyProps } from "@/lib/types/components/typograpth"
 import { FC, JSX } from "react"
 
 /**
- * @since July 2024
- * @author Issa Jean Marie <jeanmarieissa@gmail.com>
- * @see {@link https://issadevs.com} - Author's website
+ * @since October 2025
+ * @author Gedeon Twizermana <gedeontwizerimana6@gmail.com>
+ * @see {@link :https://my-brand-twizerimana-gedeons-projects.vercel.app/} - Author's website
  */
 
 const GText: FC<ITypographyProps> = ({

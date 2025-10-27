@@ -1,34 +1,37 @@
-import React, { FC, ReactNode } from "react"
-import { ConfigProvider, theme, ThemeConfig } from "antd"
-import { ANTD_THEME } from "@/config/styles/antd-theme"
-
-/**
- * Safe type for custom Ant Design component theming (e.g., Button)
- */
-export type TComponentTypesFromAntD = ThemeConfig["components"] extends object
-  ? Partial<ThemeConfig["components"]["Button"]>
-  : Record<string, unknown>
-
-interface IProps {
-  children: ReactNode
-  buttonTheme?: TComponentTypesFromAntD
-}
+import React, { FC, ReactNode, useMemo } from "react";
+import { ConfigProvider, theme, ThemeConfig } from "antd";
+import { ANTD_THEME } from "@/config/styles/antd-theme";
 
 /**
  * @since October 2025
  * @author Gedeon Twizermana <gedeontwizerimana6@gmail.com>
  * @see {@link :https://my-brand-twizerimana-gedeons-projects.vercel.app/} - Author's website
- * @description A wrapper around Ant Design ConfigProvider
- * that applies theme overrides for globally extended components.
  */
-const { defaultAlgorithm, darkAlgorithm } = theme
+
+export type TComponentTypesFromAntD = ThemeConfig["components"] extends object
+  ? Partial<ThemeConfig["components"]["Button"]>
+  : Record<string, unknown>;
+
+interface IProps {
+  children: ReactNode;
+  buttonTheme?: TComponentTypesFromAntD;
+}
+
+const { defaultAlgorithm, darkAlgorithm } = theme;
 
 const GComponent: FC<IProps> = ({ children, buttonTheme }) => {
+  const algorithm = useMemo(() => {
+    if (typeof window !== "undefined") {
+      return window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? darkAlgorithm
+        : defaultAlgorithm;
+    }
+    return defaultAlgorithm; 
+  }, []);
+
   const mergedTheme: ThemeConfig = {
     ...ANTD_THEME,
-    algorithm: window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? darkAlgorithm
-      : defaultAlgorithm,
+    algorithm,
     components: {
       ...ANTD_THEME.components,
       Button: {
@@ -36,9 +39,9 @@ const GComponent: FC<IProps> = ({ children, buttonTheme }) => {
         ...buttonTheme,
       },
     },
-  }
+  };
 
-  return <ConfigProvider theme={mergedTheme}>{children}</ConfigProvider>
-}
+  return <ConfigProvider theme={mergedTheme}>{children}</ConfigProvider>;
+};
 
-export default GComponent
+export default GComponent;
