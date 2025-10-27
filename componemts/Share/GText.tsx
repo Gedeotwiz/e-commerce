@@ -1,61 +1,74 @@
-'use client'
-import React from 'react'
-import { Typography } from 'antd'
-import clsx from 'clsx'
+import { COLOR_CONFIG } from "@/config/styles/tailwind-theme"
+import { ITypographyProps } from "@/lib/types/components/typograpth"
+import { FC, JSX } from "react"
 
-const { Text, Title } = Typography
+/**
+ * @since July 2024
+ * @author Issa Jean Marie <jeanmarieissa@gmail.com>
+ * @see {@link https://issadevs.com} - Author's website
+ */
 
-type GTextProps = {
-    children: React.ReactNode
-    variant?: 'title' | 'subtitle' | 'body' | 'caption'
-    className?: string
-    strong?: boolean
-    underline?: boolean
-    italic?: boolean
-    type?: 'success' | 'warning' | 'danger' | 'secondary'
-}
-
-export const GText: React.FC<GTextProps> = ({
+const GText: FC<ITypographyProps> = ({
+    dimension,
     children,
-    variant = 'body',
     className,
-    strong = false,
-    underline = false,
-    italic = false,
-    type,
-}) => {
-    const baseStyle = clsx(
-        {
-            'text-4xl font-bold': variant === 'title',
-            'text-xl font-semibold': variant === 'subtitle',
-            'text-base': variant === 'body',
-            'text-sm text-gray-500': variant === 'caption',
-        },
-        className
-    )
+    style,
+    color,
+    weight,
+    center,
+    ...rest
+}): JSX.Element => {
+    const level = (function () {
+        switch (dimension) {
+            case "giant":
+                return "text-[40px] lg:text-[56px] font-[900] leading-none lg:leading-tight"
+            case "extra-large":
+                return "text-[40px] font-[900] leading-tight"
+            case "large":
+                return "text-[24px] leading-[30px]"
+            case "semi-large":
+                return "text-[18px] leading-[22.5px]"
+            case "heading":
+                return "text-[16px] font-[400]"
+            case "medium":
+                return "text-[16px]"
+            case "caption":
+                return "text-[12px]"
+            case "tiny":
+                return "text-[10px]"
+            default:
+                return "text-[14px]"
+        }
+    })()
 
-    if (variant === 'title' || variant === 'subtitle') {
-        return (
-            <Title
-                level={variant === 'title' ? 2 : 4}
-                className={baseStyle}
-                italic={italic}
-            >
-                {children}
-            </Title>
-        )
-    }
+    const fontWeight = (function () {
+        switch (weight) {
+            case "normal":
+                return "font-[400]"
+            case "solid":
+                return "font-[500]"
+            case "medium":
+                return "font-[600]"
+            case "semibold":
+                return "font-[700]"
+            case "bold":
+                return "font-[900]"
+            default:
+                return "font-[400]"
+        }
+    })()
 
     return (
-        <Text
-            className={baseStyle}
-            strong={strong}
-            underline={underline}
-            italic={italic}
-            type={type}
+        <span
+            className={`${level} ${fontWeight} ${className} ${center ? "text-center" : ""} block`}
+            style={{
+                color: color ? COLOR_CONFIG[color] : COLOR_CONFIG["black"],
+                ...style,
+            }}
+            {...rest}
         >
             {children}
-        </Text>
+        </span>
     )
 }
 

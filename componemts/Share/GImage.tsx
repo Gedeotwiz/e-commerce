@@ -1,30 +1,39 @@
-import React from 'react'
-import Image, { ImageProps } from 'next/image'
 
-type GImageProps = {
-    src: string
+import { StaticImport } from "next/dist/shared/lib/get-img-props"
+import Image, { ImageProps } from "next/image"
+import { FC, JSX } from "react"
+interface IProps extends Omit<ImageProps, "alt" | "src"> {
     alt?: string
-    width?: number
-    height?: number
-    className?: string
-} & ImageProps
+    src?: string | StaticImport
+    pointer?: boolean
+}
 
-export const GImage: React.FC<GImageProps> = ({
-    src,
-    alt = 'image',
+/**
+ * @since October 2025
+ * @author Gedeon Twizermana <gedeontwizerimana6@gmail.com>
+ * @see {@link :https://my-brand-twizerimana-gedeons-projects.vercel.app/} - Author's website
+ */
+
+const GImage: FC<IProps> = ({
+    alt = "",
     width,
     height,
+    src,
     className,
-    ...props
-}) => {
+    pointer,
+    ...rest
+}): JSX.Element => {
+
     return (
         <Image
-            src={src}
             alt={alt}
             width={width}
             height={height}
-            className={className}
-            {...props}
+            src={src || ""}
+            className={`${pointer ? "cursor-pointer" : ""} ${className}`}
+            {...rest}
         />
     )
 }
+
+export default GImage

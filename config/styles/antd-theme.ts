@@ -1,6 +1,6 @@
 import { Colors } from '@/contants/colors'
 
-export const antdThemeConfig = {
+export const ANTD_THEME = {
     components: {
         Button: {
             defaultHoverBorderColor: Colors.primary,

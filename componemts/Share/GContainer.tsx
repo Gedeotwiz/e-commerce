@@ -1,20 +1,34 @@
-'use client'
-import React from 'react'
-import { Layout } from 'antd'
-import clsx from 'clsx'
+import {
+    CSSProperties,
+    DetailedHTMLProps,
+    FC,
+    HTMLAttributes,
+    JSX,
+    ReactNode,
+} from "react"
 
-const { Content } = Layout
-
-type GContainerProps = {
-    children: React.ReactNode
+interface IProps
+    extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+    children?: ReactNode
     className?: string
+    style?: CSSProperties
 }
+/**
+ * @since October 2025
+ * @author Gedeon Twizermana <gedeontwizerimana6@gmail.com>
+ * @see {@link :https://my-brand-twizerimana-gedeons-projects.vercel.app/} - Author's website
+ */
 
-export const GContainer = ({ children, className }: GContainerProps) => {
+const GContainer: FC<IProps> = ({
+    children,
+    className,
+    style,
+    ...rest
+}): JSX.Element => {
     return (
-        <Layout>
-            <Content className={clsx(className)}>{children}</Content>
-        </Layout>
+        <div className={className} style={style} {...rest}>
+            {children}
+        </div>
     )
 }
 
