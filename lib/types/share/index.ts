@@ -1,6 +1,9 @@
-import { ButtonProps} from "antd"
-import { TATTACHED_SIDES } from "@/config/extend-enum"
-import {TBUTTON_BACKGROUNDS,TBUTTON_TRANSFORMS} from "@/config/extend-enum/button-type"
+import { ButtonProps } from 'antd'
+import { TATTACHED_SIDES } from '@/config/extend-enum'
+import {
+    TBUTTON_BACKGROUNDS,
+    TBUTTON_TRANSFORMS,
+} from '@/config/extend-enum/button-type'
 
 export interface IGButtonProps extends ButtonProps {
     iconSrc?: string
@@ -20,4 +23,3 @@ export interface IGButtonProps extends ButtonProps {
      */
     bordred?: boolean
 }
-

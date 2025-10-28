@@ -5,7 +5,7 @@ import {
     HTMLAttributes,
     JSX,
     ReactNode,
-} from "react"
+} from 'react'
 
 interface IProps
     extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {

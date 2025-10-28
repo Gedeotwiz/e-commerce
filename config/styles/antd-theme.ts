@@ -1,4 +1,4 @@
-import { COLOR_CONFIG } from "./tailwind-theme"
+import { COLOR_CONFIG } from './tailwind-theme'
 
 export const ANTD_THEME = {
     components: {
@@ -13,7 +13,7 @@ export const ANTD_THEME = {
             colorPrimaryHover: COLOR_CONFIG.primary,
         },
         Input: {
-        colorText: COLOR_CONFIG.black, 
-    },
+            colorText: COLOR_CONFIG.black,
+        },
     },
 }

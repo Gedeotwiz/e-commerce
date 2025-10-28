@@ -1,8 +1,7 @@
-
-import { StaticImport } from "next/dist/shared/lib/get-img-props"
-import Image, { ImageProps } from "next/image"
-import { FC, JSX } from "react"
-interface IProps extends Omit<ImageProps, "alt" | "src"> {
+import { StaticImport } from 'next/dist/shared/lib/get-img-props'
+import Image, { ImageProps } from 'next/image'
+import { FC, JSX } from 'react'
+interface IProps extends Omit<ImageProps, 'alt' | 'src'> {
     alt?: string
     src?: string | StaticImport
     pointer?: boolean
@@ -15,7 +14,7 @@ interface IProps extends Omit<ImageProps, "alt" | "src"> {
  */
 
 const GImage: FC<IProps> = ({
-    alt = "",
+    alt = '',
     width,
     height,
     src,
@@ -23,14 +22,13 @@ const GImage: FC<IProps> = ({
     pointer,
     ...rest
 }): JSX.Element => {
-
     return (
         <Image
             alt={alt}
             width={width}
             height={height}
-            src={src || ""}
-            className={`${pointer ? "cursor-pointer" : ""} ${className}`}
+            src={src || ''}
+            className={`${pointer ? 'cursor-pointer' : ''} ${className}`}
             {...rest}
         />
     )
