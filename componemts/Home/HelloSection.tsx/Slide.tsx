@@ -70,7 +70,7 @@ const ClientHeroSectionSlides = () => {
                     </div>
                 </GContainer>
 
-                <GContainer className="hidden lg:flex justify-center items-start gap-4 absolute bottom-10 left-10">
+                <GContainer className="hidden lg:flex justify-center items-start gap-4 absolute bottom-20 left-10">
                     {items.map((_, index) => (
                         <SlideButton
                             key={index}

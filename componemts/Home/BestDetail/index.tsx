@@ -1,0 +1,51 @@
+'use client'
+import GContainer from '@/componemts/Share/GContainer'
+import GText from '@/componemts/Share/GText'
+import { SlBasket } from 'react-icons/sl'
+import GButton from '@/componemts/Share/GButton'
+import { BestDetailCards } from './BestDetailCard'
+import { Gategories } from './Getegories'
+import GImage from '@/componemts/Share/GImage'
+import toyota from '@/public/image/toyota.png'
+
+/**
+ * @since October 2025
+ * @author NSHIMIYUMUKIZA Erneste
+ * @see {@link https://portfolio-ten-azure-76.vercel.app/} - Author's website
+ */
+export const BestDetail = () => {
+    return (
+        <GContainer className="px-2 flex bg-white">
+            <Gategories />
+            <GContainer className=" w-full">
+                <GContainer className="bg-[#2C3333] w-full h-[354px] md:h-[534px] relative">
+                    <GContainer className=" px-5 md:px-16 py-8 md:pt-16 space-y-4 left-12 ">
+                        <GText
+                            dimension="extra-large"
+                            color="white"
+                            weight="bold"
+                        >
+                            BEST DETAILS
+                        </GText>
+                        <GText dimension="large" color="black">
+                            Mid-Range gaming pc - intel 17 14700kf mx turbo
+                        </GText>
+                        <GButton
+                            icon={<SlBasket />}
+                            type="primary"
+                            className="w-[130px] sm:w-[180px"
+                        >
+                            Buy now
+                        </GButton>
+                    </GContainer>
+                    <GContainer className="absolute right-0 buton-0">
+                        <GImage width={740} height={329} src={toyota} alt="" />
+                    </GContainer>
+                </GContainer>
+                <GContainer>
+                    <BestDetailCards />
+                </GContainer>
+            </GContainer>
+        </GContainer>
+    )
+}
