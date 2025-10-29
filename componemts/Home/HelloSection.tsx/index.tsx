@@ -11,7 +11,7 @@ import { WelcomeText } from './WelcomwText'
 
 export const HelloSection = () => {
     return (
-        <GContainer className="bg-[#E7F6F2] flex flex-col-reverse md:flex-row justify-end items-end md:items-center py-5">
+        <GContainer className="bg-[#E7F6F2] flex flex-col-reverse md:flex-row justify-end items-end md:items-center py-5 h-screen relative">
             <WelcomeText />
             <GContainer className="w-[200px] md:w-[400px] h-[300px] md:h-[556px] bg-gradient-to-b from-[#395B64] to-[#E7F6F2]" />
         </GContainer>
