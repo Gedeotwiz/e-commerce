@@ -1,6 +1,7 @@
 import GContainer from '../Share/GContainer'
 import { HelloSection } from './HelloSection.tsx'
 import { Heading } from './Nav/heading'
+import Secotion from './Detail/Secotion'
 
 /**
  * @since October 2025
@@ -13,6 +14,9 @@ export const HomePage = () => {
         <GContainer>
             <Heading />
             <HelloSection />
-        </GContainer>
+            <GContainer className="bg-[#E7F6F2]">
+            <Secotion />
+           </GContainer>
+       </GContainer>
     )
 }
