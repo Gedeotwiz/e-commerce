@@ -3,6 +3,8 @@ import { Footer } from './Footer'
 import { HelloSection } from './HelloSection.tsx'
 import { Heading } from './Nav/heading'
 import { BestDetail } from './BestDetail'
+import TopDetails from './TopDetailSection'
+import Fashion from './TopDetailSection/Fashion'
 
 /**
  * @since October 2025
@@ -16,6 +18,8 @@ export const HomePage = () => {
             <Heading />
             <HelloSection />
             <BestDetail />
+            <TopDetails />
+            <Fashion />
             <Footer />
         </GContainer>
     )
