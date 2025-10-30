@@ -1,6 +1,7 @@
 import GContainer from '../Share/GContainer'
 import { HelloSection } from './HelloSection.tsx'
 import { Heading } from './Nav/heading'
+import { BestDetail } from './BestDetail'
 
 /**
  * @since October 2025
@@ -10,9 +11,10 @@ import { Heading } from './Nav/heading'
 
 export const HomePage = () => {
     return (
-        <GContainer>
+        <GContainer className="overflow-y-scroll h-screen">
             <Heading />
             <HelloSection />
+            <BestDetail />
         </GContainer>
     )
 }

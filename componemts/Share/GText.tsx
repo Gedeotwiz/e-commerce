@@ -23,9 +23,9 @@ const GText: FC<ITypographyProps> = ({
             case 'giant':
                 return 'text-[40px] lg:text-[56px] leading-none lg:leading-tight'
             case 'extra-large':
-                return 'text-[40px] leading-tight'
+                return ' text-[24px] md:text-[40px] leading-tight'
             case 'large':
-                return 'text-[24px] leading-[30px]'
+                return 'text-[18px] md:text-[24px] leading-[30px]'
             case 'semi-large':
                 return 'text-[18px] leading-[22.5px]'
             case 'heading':
