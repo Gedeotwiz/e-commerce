@@ -5,4 +5,5 @@ export const COLOR_CONFIG = {
     ESeven: '#E7F6F2',
     white: '#fff',
     black: 'black',
+    red: 'red',
 } as const
