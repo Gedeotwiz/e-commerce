@@ -13,24 +13,29 @@ const electronics = [
     { image: '/elcimage/phone.png', title: 'SAMSUNG GALAXY', price: '$812' },
     { image: '/elcimage/watch.png', title: 'SMART WATCH', price: '$299' },
     { image: '/elcimage/camera.png', title: 'DIGITAL CAMERA', price: '$650' },
+    { image: '/elcimage/phone.png', title: 'SAMSUNG GALAXY', price: '$812' },
+    { image: '/elcimage/phone.png', title: 'SAMSUNG GALAXY', price: '$812' },
+    { image: '/elcimage/phone.png', title: 'SAMSUNG GALAXY', price: '$812' },
+    { image: '/elcimage/phone.png', title: 'SAMSUNG GALAXY', price: '$812' },
 ]
 
 const Electronics = () => {
     return (
-        <GContainer className="bg-[#E6EDED] py-6">
+        <GContainer className="bg-[#E6EDED] py-6 px-6 md:px-10">
             <GText
                 color="black"
-                dimension="semi-large"
+                dimension="large"
                 weight="medium"
-                className="font-semibold text-2xl px-6"
+                className="mb-5"
             >
                 Electronics:
             </GText>
-            <GContainer className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+
+            <GContainer className="flex gap-10 overflow-x-auto scroll-smooth [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
                 {electronics.map((electronic, index) => (
                     <GContainer
                         key={index}
-                        className="bg-white rounded-lg p-4 shadow hover:shadow-md transition duration-300"
+                        className="bg-white w-[284px] rounded-lg p-4 shadow hover:shadow-md transition duration-300 flex-shrink-0"
                     >
                         <GContainer className="flex justify-end">
                             <GText
@@ -48,9 +53,11 @@ const Electronics = () => {
                             width={224}
                             height={215}
                         />
+
                         <GText className="font-semibold text-lg mb-2">
                             {electronic.title}
                         </GText>
+
                         <GImage
                             width={137}
                             height={25}
@@ -58,6 +65,7 @@ const Electronics = () => {
                             alt="rating"
                             className="w-20 mb-3"
                         />
+
                         <GContainer className="flex items-center justify-between">
                             <GText className="font-bold text-[#333]">
                                 {electronic.price}
