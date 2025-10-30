@@ -27,7 +27,7 @@ export const BestDetail = () => {
                         >
                             BEST DETAILS
                         </GText>
-                        <GText dimension="large" color="black">
+                        <GText dimension="large" color="white">
                             Mid-Range gaming pc - intel 17 14700kf mx turbo
                         </GText>
                         <GButton

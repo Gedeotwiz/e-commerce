@@ -1,4 +1,5 @@
 import GContainer from '../Share/GContainer'
+import { Footer } from './Footer'
 import { HelloSection } from './HelloSection.tsx'
 import { Heading } from './Nav/heading'
 import { BestDetail } from './BestDetail'
@@ -15,6 +16,7 @@ export const HomePage = () => {
             <Heading />
             <HelloSection />
             <BestDetail />
+            <Footer />
         </GContainer>
     )
 }
