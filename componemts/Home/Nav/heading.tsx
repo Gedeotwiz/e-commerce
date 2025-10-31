@@ -33,9 +33,17 @@ export const Heading = () => {
         { icon: <FaRegCircleUser />, label: 'Account' },
     ]
 
+    const navLinks = ['Home', 'Shops', 'Products']
+      router.push('/authentication/login')
+    } else if (label === 'Cart') {
+      router.push('/cart')
+    } else if (label === 'Wishlist') {
+      router.push('/wishlist')
+    }
+  }
+
     return (
         <header className="w-full bg-[#E7F6F2] relative">
-            <GContainer className="p-4 md:px-20 flex flex-wrap justify-between items-center">
                 <GText
                     className="text-2xl text-[#2C3E50] tracking-wide cursor-pointer"
                     weight="bold"
@@ -70,6 +78,7 @@ export const Heading = () => {
                     <div className="flex items-center gap-3 sm:gap-5">
                         {items.map((item, index) => (
                             <button
+                              onClick={() => handleClick(item.label)}
                                 key={index}
                                 className="flex flex-col items-center text-[#2C3E50] hover:text-[#4390A6] transition-colors"
                                 aria-label={item.label}
