@@ -7,6 +7,7 @@ import { BestDetailCards } from './BestDetailCard'
 import { Gategories } from './Getegories'
 import GImage from '@/componemts/Share/GImage'
 import toyota from '@/public/image/toyota.png'
+import { CgMenuMotion } from "react-icons/cg";
 
 /**
  * @since October 2025
@@ -16,7 +17,18 @@ import toyota from '@/public/image/toyota.png'
 export const BestDetail = () => {
     return (
         <GContainer className="px-2 flex bg-white">
+             <GContainer className=" hidden md:block w-[306px] h-[1074px] bg-[#E7F6F2] shadow-sm">
+            <GContainer className="hidden not-visited:bg-[#395B64] md:flex items-center px-4 text-white pt-3 pb-2">
+                <CgMenuMotion size={16} />
+                <GText
+                    color="white"
+                    className="px-2 font-semibold text-sm tracking-wide"
+                >
+                    ALL CATEGORIES
+                </GText>
+            </GContainer>
             <Gategories />
+            </GContainer>
             <GContainer className=" w-full">
                 <GContainer className="bg-[#2C3333] w-full h-[354px] md:h-[534px] relative">
                     <GContainer className=" px-5 md:px-16 py-8 md:pt-16 space-y-4 left-12 ">

@@ -1,5 +1,4 @@
 import GContainer from '@/componemts/Share/GContainer'
-import { FiAlignJustify } from 'react-icons/fi'
 import { FaAngleRight } from 'react-icons/fa'
 import GText from '@/componemts/Share/GText'
 import GImage from '@/componemts/Share/GImage'
@@ -17,17 +16,6 @@ export const Gategories = () => {
     ]
 
     return (
-        <GContainer className=" hidden md:block w-[306px] h-[1074px] bg-[#E7F6F2] shadow-sm">
-            <GContainer className="hidden not-visited:bg-[#395B64] md:flex items-center px-4 text-white pt-3 pb-2">
-                <FiAlignJustify size={16} />
-                <GText
-                    color="white"
-                    className="px-2 font-semibold text-sm tracking-wide"
-                >
-                    ALL CATEGORIES
-                </GText>
-            </GContainer>
-
             <GContainer className="mt-3 space-y-2 px-3 pb-3">
                 {categories.map((cat, index) => (
                     <GContainer
@@ -36,8 +24,8 @@ export const Gategories = () => {
                     >
                         <GContainer className="flex items-center space-x-3">
                             <GImage
-                                width={6}
-                                height={6}
+                                width={15}
+                                height={15}
                                 src={cat.img}
                                 alt={cat.title}
                             />
@@ -48,7 +36,6 @@ export const Gategories = () => {
                         <FaAngleRight size={14} className="text-gray-500" />
                     </GContainer>
                 ))}
-            </GContainer>
         </GContainer>
     )
 }
