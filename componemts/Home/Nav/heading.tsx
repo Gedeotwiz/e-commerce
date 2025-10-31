@@ -1,4 +1,5 @@
 'use client'
+
 import GContainer from '@/componemts/Share/GContainer'
 import GText from '@/componemts/Share/GText'
 import { IoIosHeartEmpty } from 'react-icons/io'
@@ -7,8 +8,7 @@ import { LuShoppingCart } from 'react-icons/lu'
 import { SeaRchInput } from './seachInput'
 import { CiMenuFries } from 'react-icons/ci'
 import { useState } from 'react'
-import { usePathname } from 'next/navigation'
-// import { useRouter } from 'next/router'
+import { usePathname, useRouter } from 'next/navigation'
 
 /**
  * @since October 2025
@@ -19,14 +19,13 @@ import { usePathname } from 'next/navigation'
 export const Heading = () => {
     const [menuOpen, setMenuOpen] = useState(false)
     const pathname = usePathname()
-    // const router = useRouter()
+    const router = useRouter()
 
-    // const parth = ""
-   
-    // switch (parth) {
-    //   case '':
-    //     return router.push("../")
-    // }
+    const navLinks = [
+        { label: 'Home', href: '/' },
+        { label: 'Shops', href: '/shops' },
+        { label: 'Products', href: '/products' },
+    ]
 
     const items = [
         { icon: <IoIosHeartEmpty />, label: 'Wishlist' },
@@ -34,29 +33,25 @@ export const Heading = () => {
         { icon: <FaRegCircleUser />, label: 'Account' },
     ]
 
-    const navLinks=[
-        {label:"Home",onclick:{}},
-        {label:"Shops",onclick:{}},
-        {label:"Products",onclick:{}}
-    ]
-
     return (
-        <header className="w-full bg-[#E7F6F2]">
+        <header className="w-full bg-[#E7F6F2] relative">
             <GContainer className="p-4 md:px-20 flex flex-wrap justify-between items-center">
                 <GText
-                    className="text-2xl text-[#2C3E50] tracking-wide"
+                    className="text-2xl text-[#2C3E50] tracking-wide cursor-pointer"
                     weight="bold"
                     dimension="large"
+                    onClick={() => router.push('/')}
                 >
                     ALPHA
                 </GText>
 
                 <nav className="hidden md:flex gap-10 items-center">
                     {navLinks.map((link) => {
-                        const isActive = link.label === 'Home' && pathname === '/'
+                        const isActive = pathname === link.href
                         return (
                             <GText
                                 key={link.label}
+                                onClick={() => router.push(link.href)}
                                 className={`cursor-pointer hover:text-[#4390A6] transition-colors ${
                                     isActive ? 'font-bold underline' : ''
                                 }`}
@@ -100,10 +95,14 @@ export const Heading = () => {
             {menuOpen && (
                 <nav className="md:hidden bg-[#E7F6F2] absolute w-full z-50 border-t border-[#ccc] flex flex-col items-center py-4 px-5 space-y-3 animate-fadeIn shadow-sm">
                     {navLinks.map((link) => {
-                        const isActive = link.label === 'Home' && pathname === '/'
+                        const isActive = pathname === link.href
                         return (
                             <GText
                                 key={link.label}
+                                onClick={() => {
+                                    router.push(link.href)
+                                    setMenuOpen(false)
+                                }}
                                 className={`cursor-pointer hover:text-[#4390A6] transition-colors p-2 ${
                                     isActive ? 'font-bold underline' : ''
                                 }`}

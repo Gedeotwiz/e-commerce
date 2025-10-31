@@ -1,3 +1,5 @@
+'use client'
+
 import GContainer from "../Share/GContainer"
 import { FaCartPlus } from 'react-icons/fa6'
 import GImage from "../Share/GImage"
@@ -11,7 +13,7 @@ interface props{
 
 export const ProductCard = ({title,price}:props) =>{
     return (
-        <GContainer className="w-[334px] bg-white rounded-md p-5">
+        <GContainer className=" w-[280px] md:w-[334px] bg-white rounded-md p-5">
             <GContainer className="flex justify-end items-end">
                 <FaCartPlus className="text-gray-500 text-xl cursor-pointer hover:scale-110 transition-transform" />
             </GContainer>

@@ -7,7 +7,7 @@ import { BestDetailCards } from './BestDetailCard'
 import { Gategories } from './Getegories'
 import GImage from '@/componemts/Share/GImage'
 import toyota from '@/public/image/toyota.png'
-import { FiAlignJustify } from 'react-icons/fi'
+import { CgMenuMotion } from "react-icons/cg";
 
 /**
  * @since October 2025
@@ -19,7 +19,7 @@ export const BestDetail = () => {
         <GContainer className="px-2 flex bg-white">
              <GContainer className=" hidden md:block w-[306px] h-[1074px] bg-[#E7F6F2] shadow-sm">
             <GContainer className="hidden not-visited:bg-[#395B64] md:flex items-center px-4 text-white pt-3 pb-2">
-                <FiAlignJustify size={16} />
+                <CgMenuMotion size={16} />
                 <GText
                     color="white"
                     className="px-2 font-semibold text-sm tracking-wide"
