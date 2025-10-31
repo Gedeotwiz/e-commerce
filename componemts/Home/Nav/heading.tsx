@@ -8,6 +8,7 @@ import { SeaRchInput } from './seachInput'
 import { CiMenuFries } from 'react-icons/ci'
 import { useState } from 'react'
 import { usePathname } from 'next/navigation'
+// import { useRouter } from 'next/router'
 
 /**
  * @since October 2025
@@ -18,6 +19,14 @@ import { usePathname } from 'next/navigation'
 export const Heading = () => {
     const [menuOpen, setMenuOpen] = useState(false)
     const pathname = usePathname()
+    // const router = useRouter()
+
+    // const parth = ""
+   
+    // switch (parth) {
+    //   case '':
+    //     return router.push("../")
+    // }
 
     const items = [
         { icon: <IoIosHeartEmpty />, label: 'Wishlist' },
@@ -25,7 +34,11 @@ export const Heading = () => {
         { icon: <FaRegCircleUser />, label: 'Account' },
     ]
 
-    const navLinks = ['Home', 'Shops', 'Products']
+    const navLinks=[
+        {label:"Home",onclick:{}},
+        {label:"Shops",onclick:{}},
+        {label:"Products",onclick:{}}
+    ]
 
     return (
         <header className="w-full bg-[#E7F6F2]">
@@ -39,16 +52,16 @@ export const Heading = () => {
                 </GText>
 
                 <nav className="hidden md:flex gap-10 items-center">
-                    {navLinks.map((label) => {
-                        const isActive = label === 'Home' && pathname === '/'
+                    {navLinks.map((link) => {
+                        const isActive = link.label === 'Home' && pathname === '/'
                         return (
                             <GText
-                                key={label}
+                                key={link.label}
                                 className={`cursor-pointer hover:text-[#4390A6] transition-colors ${
                                     isActive ? 'font-bold underline' : ''
                                 }`}
                             >
-                                {label}
+                                {link.label}
                             </GText>
                         )
                     })}
@@ -86,16 +99,16 @@ export const Heading = () => {
 
             {menuOpen && (
                 <nav className="md:hidden bg-[#E7F6F2] absolute w-full z-50 border-t border-[#ccc] flex flex-col items-center py-4 px-5 space-y-3 animate-fadeIn shadow-sm">
-                    {navLinks.map((label) => {
-                        const isActive = label === 'Home' && pathname === '/'
+                    {navLinks.map((link) => {
+                        const isActive = link.label === 'Home' && pathname === '/'
                         return (
                             <GText
-                                key={label}
+                                key={link.label}
                                 className={`cursor-pointer hover:text-[#4390A6] transition-colors p-2 ${
                                     isActive ? 'font-bold underline' : ''
                                 }`}
                             >
-                                {label}
+                                {link.label}
                             </GText>
                         )
                     })}
