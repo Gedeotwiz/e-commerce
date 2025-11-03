@@ -1,3 +1,4 @@
+'use client'
 import { COLOR_CONFIG } from '@/config/styles/tailwind-theme'
 import { IGButtonProps } from '@/lib/types/share'
 import { Button } from 'antd'
