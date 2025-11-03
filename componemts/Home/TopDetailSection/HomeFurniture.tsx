@@ -47,7 +47,7 @@ const HomeFurniture = () => {
                             height={760}
                             src="/homefurimage/sofya.png"
                             alt="Sofa Set"
-                            className="w-full h-auto rounded-2xl shadow-md object-cover"
+                            className="w-full h-auto object-cover"
                         />
                         <GContainer className="flex justify-center mt-6">
                             <GButton
