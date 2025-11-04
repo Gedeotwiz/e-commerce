@@ -1,12 +1,12 @@
 'use client'
-import RegisterPage from '@/componemts/auth/Register'
+import ResentPassword from '@/componemts/auth/ResentPassword'
 import GContainer from '@/componemts/Share/GContainer'
 import React from 'react'
 
 const page = () => {
     return (
         <GContainer>
-            <RegisterPage />
+            <ResentPassword />
         </GContainer>
     )
 }

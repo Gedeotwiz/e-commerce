@@ -65,7 +65,10 @@ const HomeFurniture = () => {
                                 className="bg-white shadow-md rounded-xl p-4 hover:shadow-lg transition duration-300 flex flex-col"
                             >
                                 <GContainer className="flex justify-end mb-2">
-                                    <GText color='white' className="h-10 w-10 rounded-full bg-[#2C3333] flex justify-center items-center text-xs font-semibold">
+                                    <GText
+                                        color="white"
+                                        className="h-10 w-10 rounded-full bg-[#2C3333] flex justify-center items-center text-xs font-semibold"
+                                    >
                                         -10%
                                     </GText>
                                 </GContainer>
