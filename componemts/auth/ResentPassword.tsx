@@ -5,23 +5,24 @@ import GContainer from '../Share/GContainer'
 import GImage from '../Share/GImage'
 import GText from '../Share/GText'
 import { Title } from './Title'
-import { Input } from '../Share/Input/Input'
+import { InputPassword } from '../Share/Input/InputPassword'
 import { useRouter } from 'next/navigation'
 import { notification } from 'antd'
 
 /**
  * @since October 2025
- * @author NSHIMIYUMUKIZA Erneste
- * @see {@link https://portfolio-ten-azure-76.vercel.app/} - Author's website
+ * @author Gedeon Twizermana <gedeontwizerimana6@gmail.com>
+ * @see {@link :https://my-brand-twizerimana-gedeons-projects.vercel.app/} - Author's website
  */
 
-export default function ForgotPassword() {
-    const router = useRouter()
+export default function ResentPassword() {
     const [loading, setLoading] = useState(false)
     const [api, contextHolder] = notification.useNotification()
+    const router = useRouter()
 
     const [formData, setFormData] = useState({
-        email: '',
+        password: '',
+        confrimPassword: '',
     })
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -30,10 +31,11 @@ export default function ForgotPassword() {
     }
 
     const handleSubmit = async () => {
-        if (!formData.email) {
+        if (formData.password !== formData.confrimPassword) {
             api.open({
                 message: 'Missing Fields',
-                description: 'Please email is required',
+                description:
+                    'Please your password and confrim password not macth.',
                 type: 'warning',
             })
             return
@@ -43,44 +45,52 @@ export default function ForgotPassword() {
         try {
             await new Promise((res) => setTimeout(res, 2000))
             api.open({
-                message: 'Please check your email!',
-                description:
-                    'Now we are sending otp code on this email go in box of your email.',
+                message: 'Password successful changed!',
+                description: 'Now you have to login using new password.',
                 type: 'success',
             })
-            router.push('/authentication/verifyotp')
+            router.push('/authentication/login')
         } finally {
             setLoading(false)
         }
     }
-
     return (
         <GContainer className="min-h-screen w-full flex flex-col md:flex-row bg-[#EAF6F6]">
             {contextHolder}
             <GContainer className="relative w-full flex flex-1 items-center justify-between py-12 md:py-0 overflow-hidden">
                 <GContainer className=" w-full md:w-2/3 px-6 md:px-0 flex justify-center">
                     <GContainer className="relative z-10 w-full max-w-md">
-                        <Title name="Forgot Password" />
+                        <Title name="Resent Password" />
+
                         <form className="space-y-6">
                             <GContainer>
-                                <Input
-                                    name="email"
-                                    type="email"
-                                    placeholder="Email"
-                                    value={formData.email}
+                                <InputPassword
+                                    name="password"
+                                    placeholder="Password"
+                                    value={formData.password}
                                     onChange={handleChange}
                                 />
                             </GContainer>
+
+                            <GContainer>
+                                <InputPassword
+                                    name="confrimPassword"
+                                    placeholder="confrim Password"
+                                    value={formData.confrimPassword}
+                                    onChange={handleChange}
+                                />
+                            </GContainer>
+
                             <GContainer className="flex justify-center items-center">
                                 <AuthButton
-                                    name="Send"
+                                    name="Verfy email"
                                     onClick={handleSubmit}
                                     isLoading={loading}
                                 />
                             </GContainer>
 
                             <GText className="flex items-center justify-center mt-4 gap-2 text-lg text-[#2E4F4F]">
-                                Rest Email
+                                Change Password
                             </GText>
                         </form>
                     </GContainer>
@@ -90,9 +100,9 @@ export default function ForgotPassword() {
 
             <GContainer className=" hidden md:flex flex-1 items-center justify-center bg-[#2E4F4F] p-8 md:p-0 skew-x-[-15deg] absolute right-30 h-screen w-[800px]">
                 <GImage
-                    width={531}
-                    height={572}
-                    src="/authimage/forgotimage.png"
+                    width={529}
+                    height={614}
+                    src="/authimage/locker.png"
                     className="w-64 sm:w-80 md:w-[400px] lg:w-[500px] object-contain"
                     alt="Login Illustration"
                 />

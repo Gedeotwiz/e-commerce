@@ -1,10 +1,14 @@
 'use client'
-import { useState } from 'react'
+
+import React, { useState, ChangeEvent } from 'react'
 import GImage from '../Share/GImage'
-import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import GContainer from '../Share/GContainer'
 import GText from '../Share/GText'
-import GButton from '../Share/GButton'
+import { InputPassword } from '../Share/Input/InputPassword'
+import { Input } from '../Share/Input/Input'
+import { Title } from './Title'
+import { AuthButton } from './AuthButton'
+import { notification } from 'antd'
 
 /**
  * @since October 2025
@@ -13,68 +17,132 @@ import GButton from '../Share/GButton'
  */
 
 export default function RegisterPage() {
-    const [showPassword, setShowPassword] = useState(false)
+    const [api, contextHolder] = notification.useNotification()
+    const [loading, setLoading] = useState(false)
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        address: '',
+        password: '',
+    })
+
+    const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target
+        setFormData((prev) => ({ ...prev, [name]: value }))
+    }
+
+    const handleSubmit = async () => {
+        if (
+            !formData.name ||
+            !formData.email ||
+            !formData.phone ||
+            !formData.address ||
+            !formData.password
+        ) {
+            api.open({
+                message: 'Missing Fields',
+                description: 'Please fill in both fields.',
+                type: 'warning',
+            })
+            return
+        }
+
+        setLoading(true)
+        try {
+            await new Promise((res) => setTimeout(res, 2000))
+            api.open({
+                message: 'Login successful!',
+                description: 'Now you have access to buy products.',
+                type: 'success',
+            })
+        } finally {
+            setLoading(false)
+        }
+    }
 
     return (
-        <GContainer className="min-h-screen flex flex-col md:flex-row">
-            <GContainer className="relative flex flex-1 items-center justify-center bg-[#EAF6F6] px-6 py-12 md:py-0 overflow-hidden">
-               
-                <GContainer className="relative z-10 w-full max-w-md">
-                    <GText className="text-3xl md:text-4xl font-semibold text-[#2E4F4F] mb-8 text-center md:text-left">
-                        Register Here
-                    </GText>
+        <GContainer className="min-h-screen w-full flex flex-col md:flex-row bg-[#EAF6F6]">
+            {contextHolder}
+            <GContainer className="relative w-full flex flex-1 items-center justify-between py-12 md:py-0 overflow-hidden">
+                <GContainer className=" w-full md:w-2/3 px-6 md:px-0 flex justify-center">
+                    <GContainer className="relative z-10 w-full max-w-md">
+                        <Title name="Register Here" />
 
-                    <form className="space-y-5">
-                        {['Name', 'Email', 'Phone', 'Address'].map((field) => (
-                            <GContainer key={field}>
-                                <input
-                                    type={field === 'Email' ? 'email' : 'text'}
-                                    placeholder={field}
-                                    className="w-full bg-transparent border-b border-[#2E4F4F] outline-none py-2 text-[#2E4F4F] placeholder-[#708090] text-sm sm:text-base"
+                        <form className="space-y-5">
+                            <GContainer>
+                                <Input
+                                    name="name"
+                                    type="text"
+                                    placeholder="Name"
+                                    value={formData.name}
+                                    onChange={handleChange}
                                 />
                             </GContainer>
-                        ))}
 
-                        <GContainer className="relative">
-                            <input
-                                type={showPassword ? 'text' : 'password'}
-                                placeholder="Password"
-                                className="w-full bg-transparent border-b border-[#2E4F4F] outline-none py-2 text-[#2E4F4F] placeholder-[#708090] text-sm sm:text-base"
-                            />
-                            <GButton
-                                
-                                onClick={() => setShowPassword(!showPassword)}
-                                className="absolute right-2 top-2 text-[#2E4F4F]"
+                            <GContainer>
+                                <Input
+                                    name="email"
+                                    type="email"
+                                    placeholder="Email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                />
+                            </GContainer>
+
+                            <GContainer>
+                                <Input
+                                    name="phone"
+                                    type="text"
+                                    placeholder="Phone"
+                                    value={formData.phone}
+                                    onChange={handleChange}
+                                />
+                            </GContainer>
+
+                            <GContainer>
+                                <Input
+                                    name="address"
+                                    type="text"
+                                    placeholder="Address"
+                                    value={formData.address}
+                                    onChange={handleChange}
+                                />
+                            </GContainer>
+
+                            <GContainer className="relative">
+                                <InputPassword
+                                    name="password"
+                                    placeholder="Password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                />
+                            </GContainer>
+
+                            <GContainer className="flex justify-center items-center">
+                                <AuthButton
+                                    name="Verify Email"
+                                    onClick={handleSubmit}
+                                    isLoading={loading}
+                                />
+                            </GContainer>
+                        </form>
+
+                        <GText className="text-sm text-[#708090] mt-5 text-center">
+                            Already have an account?{' '}
+                            <a
+                                href="/authentication/login"
+                                className="text-[#2E4F4F] font-medium hover:underline"
                             >
-                                {showPassword ? (
-                                    <FaEyeSlash size={18} />
-                                ) : (
-                                    <FaEye size={18} />
-                                )}
-                            </GButton>
-                        </GContainer>
-
-                        <GButton
-                           
-                            className="bg-[#2E4F4F] text-white py-2 px-6 rounded-full w-full mt-6 text-sm sm:text-base font-medium hover:opacity-90 transition"
-                        >
-                            Verify email
-                        </GButton>
-                    </form>
-
-                    <GText className="text-sm text-[#708090] mt-5 text-center">
-                        Already have an account?{' '}
-                        <a
-                            href="/login"
-                            className="text-[#2E4F4F] font-medium hover:underline"
-                        >
-                            Login
-                        </a>
-                    </GText>
+                                Login
+                            </a>
+                        </GText>
+                    </GContainer>
                 </GContainer>
+                <GContainer className="hidden md:block bg-[#2E4F4F] w-[300px] h-screen" />
             </GContainer>
-            <GContainer className=" hidden md:flex flex-1 items-center justify-center bg-[#2E4F4F] p-8 md:p-0 skew-x-[-15deg]">
 
+            <GContainer className=" hidden md:flex flex-1 items-center justify-center bg-[#2E4F4F] p-8 md:p-0 skew-x-[-15deg] absolute right-30 h-screen w-[800px]">
                 <GImage
                     width={500}
                     height={400}

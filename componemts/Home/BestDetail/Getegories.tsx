@@ -16,26 +16,26 @@ export const Gategories = () => {
     ]
 
     return (
-            <GContainer className="mt-3 space-y-2 px-3 pb-3">
-                {categories.map((cat, index) => (
-                    <GContainer
-                        key={index}
-                        className=" hidden w-full md:flex items-center justify-between cursor-pointer hover:bg-[#D9F3EC] transition-colors rounded-lg px-2 py-1"
-                    >
-                        <GContainer className="flex items-center space-x-3">
-                            <GImage
-                                width={15}
-                                height={15}
-                                src={cat.img}
-                                alt={cat.title}
-                            />
-                            <GText className="text-[#1E1E1E] text-sm font-medium">
-                                {cat.title}
-                            </GText>
-                        </GContainer>
-                        <FaAngleRight size={14} className="text-gray-500" />
+        <GContainer className="mt-3 space-y-2 px-3 pb-3">
+            {categories.map((cat, index) => (
+                <GContainer
+                    key={index}
+                    className=" hidden w-full md:flex items-center justify-between cursor-pointer hover:bg-[#D9F3EC] transition-colors rounded-lg px-2 py-1"
+                >
+                    <GContainer className="flex items-center space-x-3">
+                        <GImage
+                            width={15}
+                            height={15}
+                            src={cat.img}
+                            alt={cat.title}
+                        />
+                        <GText className="text-[#1E1E1E] text-sm font-medium">
+                            {cat.title}
+                        </GText>
                     </GContainer>
-                ))}
+                    <FaAngleRight size={14} className="text-gray-500" />
+                </GContainer>
+            ))}
         </GContainer>
     )
 }

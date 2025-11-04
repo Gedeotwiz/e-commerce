@@ -6,5 +6,5 @@ export const COLOR_CONFIG = {
     white: '#fff',
     black: 'black',
     red: 'red',
-    BbSixten:"#BB1616"
+    BbSixten: '#BB1616',
 } as const

@@ -17,114 +17,114 @@ import { usePathname, useRouter } from 'next/navigation'
  */
 
 export const Heading = () => {
-  const [menuOpen, setMenuOpen] = useState(false)
-  const pathname = usePathname()
-  const router = useRouter()
+    const [menuOpen, setMenuOpen] = useState(false)
+    const pathname = usePathname()
+    const router = useRouter()
 
-  const navLinks = [
-    { label: 'Home', href: '/' },
-    { label: 'Shops', href: '/shops' },
-    { label: 'Products', href: '/products' },
-  ]
+    const navLinks = [
+        { label: 'Home', href: '/' },
+        { label: 'Shops', href: '/shops' },
+        { label: 'Products', href: '/products' },
+    ]
 
-  const items = [
-    { icon: <IoIosHeartEmpty />, label: 'Wishlist' },
-    { icon: <LuShoppingCart />, label: 'Cart' },
-    { icon: <FaRegCircleUser />, label: 'Account' },
-  ]
+    const items = [
+        { icon: <IoIosHeartEmpty />, label: 'Wishlist' },
+        { icon: <LuShoppingCart />, label: 'Cart' },
+        { icon: <FaRegCircleUser />, label: 'Account' },
+    ]
 
-  const handleClick = (label: string) => {
-    if (label === 'Account') {
-      router.push('/authentication/login')
-    } else if (label === 'Cart') {
-      router.push('/cart')
-    } else if (label === 'Wishlist') {
-      router.push('/wishlist')
+    const handleClick = (label: string) => {
+        if (label === 'Account') {
+            router.push('/authentication/login')
+        } else if (label === 'Cart') {
+            router.push('/cart')
+        } else if (label === 'Wishlist') {
+            router.push('/wishlist')
+        }
     }
-  }
 
-  return (
-    <header className="w-full bg-[#E7F6F2] relative">
-      <GContainer className="flex justify-between items-center px-4 py-3">
-        <GText
-          className="text-2xl text-[#2C3E50] tracking-wide cursor-pointer"
-          weight="bold"
-          dimension="large"
-          onClick={() => router.push('/')}
-        >
-          ALPHA
-        </GText>
-
-        <nav className="hidden md:flex gap-10 items-center">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href
-            return (
-              <GText
-                key={link.label}
-                onClick={() => router.push(link.href)}
-                className={`cursor-pointer hover:text-[#4390A6] transition-colors ${
-                  isActive ? 'font-bold underline' : ''
-                }`}
-              >
-                {link.label}
-              </GText>
-            )
-          })}
-        </nav>
-
-        <GContainer className="flex items-center gap-4 sm:gap-6">
-          <div className="hidden sm:block w-40 md:w-56">
-            <SeaRchInput />
-          </div>
-
-          <div className="flex items-center gap-3 sm:gap-5">
-            {items.map((item, index) => (
-              <button
-                key={index}
-                onClick={() => handleClick(item.label)}
-                className="flex flex-col items-center text-[#2C3E50] hover:text-[#4390A6] transition-colors"
-                aria-label={item.label}
-              >
-                <div className="text-xl">{item.icon}</div>
-                <GText className="hidden sm:block text-xs">
-                  {item.label}
+    return (
+        <header className="w-full bg-[#E7F6F2] relative">
+            <GContainer className="flex justify-between items-center px-4 py-3">
+                <GText
+                    className="text-2xl text-[#2C3E50] tracking-wide cursor-pointer"
+                    weight="bold"
+                    dimension="large"
+                    onClick={() => router.push('/')}
+                >
+                    ALPHA
                 </GText>
-              </button>
-            ))}
-          </div>
 
-          <button
-            onClick={() => setMenuOpen((prev) => !prev)}
-            className="md:hidden p-1 text-[#2C3E50] hover:text-[#4390A6] transition-colors"
-            aria-label="Toggle menu"
-          >
-            <CiMenuFries size={30} />
-          </button>
-        </GContainer>
-      </GContainer>
+                <nav className="hidden md:flex gap-10 items-center">
+                    {navLinks.map((link) => {
+                        const isActive = pathname === link.href
+                        return (
+                            <GText
+                                key={link.label}
+                                onClick={() => router.push(link.href)}
+                                className={`cursor-pointer hover:text-[#4390A6] transition-colors ${
+                                    isActive ? 'font-bold underline' : ''
+                                }`}
+                            >
+                                {link.label}
+                            </GText>
+                        )
+                    })}
+                </nav>
 
-      {menuOpen && (
-        <nav className="md:hidden bg-[#E7F6F2] absolute w-full z-50 border-t border-[#ccc] flex flex-col items-center py-4 px-5 space-y-3 animate-fadeIn shadow-sm">
-          {navLinks.map((link) => {
-            const isActive = pathname === link.href
-            return (
-              <GText
-                key={link.label}
-                onClick={() => {
-                  router.push(link.href)
-                  setMenuOpen(false)
-                }}
-                className={`cursor-pointer hover:text-[#4390A6] transition-colors p-2 ${
-                  isActive ? 'font-bold underline' : ''
-                }`}
-              >
-                {link.label}
-              </GText>
-            )
-          })}
-          <SeaRchInput />
-        </nav>
-      )}
-    </header>
-  )
+                <GContainer className="flex items-center gap-4 sm:gap-6">
+                    <div className="hidden sm:block w-40 md:w-56">
+                        <SeaRchInput />
+                    </div>
+
+                    <div className="flex items-center gap-3 sm:gap-5">
+                        {items.map((item, index) => (
+                            <button
+                                key={index}
+                                onClick={() => handleClick(item.label)}
+                                className="flex flex-col items-center text-[#2C3E50] hover:text-[#4390A6] transition-colors"
+                                aria-label={item.label}
+                            >
+                                <div className="text-xl">{item.icon}</div>
+                                <GText className="hidden sm:block text-xs">
+                                    {item.label}
+                                </GText>
+                            </button>
+                        ))}
+                    </div>
+
+                    <button
+                        onClick={() => setMenuOpen((prev) => !prev)}
+                        className="md:hidden p-1 text-[#2C3E50] hover:text-[#4390A6] transition-colors"
+                        aria-label="Toggle menu"
+                    >
+                        <CiMenuFries size={30} />
+                    </button>
+                </GContainer>
+            </GContainer>
+
+            {menuOpen && (
+                <nav className="md:hidden bg-[#E7F6F2] absolute w-full z-50 border-t border-[#ccc] flex flex-col items-center py-4 px-5 space-y-3 animate-fadeIn shadow-sm">
+                    {navLinks.map((link) => {
+                        const isActive = pathname === link.href
+                        return (
+                            <GText
+                                key={link.label}
+                                onClick={() => {
+                                    router.push(link.href)
+                                    setMenuOpen(false)
+                                }}
+                                className={`cursor-pointer hover:text-[#4390A6] transition-colors p-2 ${
+                                    isActive ? 'font-bold underline' : ''
+                                }`}
+                            >
+                                {link.label}
+                            </GText>
+                        )
+                    })}
+                    <SeaRchInput />
+                </nav>
+            )}
+        </header>
+    )
 }

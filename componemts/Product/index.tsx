@@ -1,19 +1,19 @@
 'use client'
-import { Footer } from "../Home/Footer"
-import { Heading } from "../Home/Nav/heading"
-import GContainer from "../Share/GContainer"
-import { AllProduct } from "./AllProduct"
-import { LeftFilter } from "./LeftFilter"
+import { Footer } from '../Home/Footer'
+import { Heading } from '../Home/Nav/heading'
+import GContainer from '../Share/GContainer'
+import { AllProduct } from './AllProduct'
+import { LeftFilter } from './LeftFilter'
 
-export const Product = () =>{
+export const Product = () => {
     return (
         <GContainer>
-            <Heading/>
+            <Heading />
             <GContainer className=" py-10 flex ">
-                <LeftFilter/>
-                <AllProduct/>
+                <LeftFilter />
+                <AllProduct />
             </GContainer>
-            <Footer/>
+            <Footer />
         </GContainer>
     )
 }

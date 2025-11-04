@@ -1,4 +1,3 @@
-
 'use client'
 import React, { FC, ReactNode } from 'react'
 import { ConfigProvider, theme, ThemeConfig } from 'antd'
@@ -16,7 +15,7 @@ interface IProps {
 const GComponent: FC<IProps> = ({ children, buttonTheme }) => {
     const mergedTheme: ThemeConfig = {
         ...ANTD_THEME,
-        algorithm: theme.defaultAlgorithm, 
+        algorithm: theme.defaultAlgorithm,
         components: {
             ...ANTD_THEME.components,
             Button: {
