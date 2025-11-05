@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import GContainer from '@/componemts/Share/GContainer'
+import { AntdRegistry } from '@ant-design/nextjs-registry'
+import { Providers } from '@/componemts/Share/Provider'
 
 const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] })
 const geistMono = Geist_Mono({
@@ -24,7 +26,12 @@ export default function RootLayout({
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
-                <GContainer>{children}</GContainer>
+                <AntdRegistry>
+                  <Providers>
+                   <GContainer>{children}</GContainer>
+                  </Providers>
+                    
+                </AntdRegistry>
             </body>
         </html>
     )

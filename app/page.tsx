@@ -1,3 +1,4 @@
+'use client'
 import { HomePage } from '@/componemts/Home'
 import GContainer from '@/componemts/Share/GContainer'
 

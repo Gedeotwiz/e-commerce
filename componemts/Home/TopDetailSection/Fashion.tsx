@@ -1,8 +1,12 @@
+'use client'
 import GButton from '@/componemts/Share/GButton'
 import GContainer from '@/componemts/Share/GContainer'
 import GImage from '@/componemts/Share/GImage'
 import GText from '@/componemts/Share/GText'
 import { FaCartPlus } from 'react-icons/fa6'
+import { useDispatch } from 'react-redux'
+import { setSelectedItem } from '@/lib/rtk/redux/features/fashionslice'
+import { useRouter } from 'next/navigation'
 
 /**
  * @since October 2025
@@ -10,25 +14,50 @@ import { FaCartPlus } from 'react-icons/fa6'
  * @see {@link :https://portfolio-ten-azure-76.vercel.app/} - Author's website
  */
 
+
+
 const Fashion = () => {
+
+    const dispatch = useDispatch()
+    const router = useRouter()
+
     const fashions = [
         {
+            id: 1,
             image: '/fashionimage/fashion1.png',
             price: '$812',
+            title: 'Luxury Dress',
+            description: 'Beautiful designer dress with modern fit.',
+            
         },
         {
+            id: 2,
             image: '/fashionimage/fashion2.png',
             price: '$620',
+            title: 'Classic Coat',
+            description: 'Warm and stylish winter coat.',
         },
         {
+            id: 3,
             image: '/fashionimage/fashion3.png',
             price: '$499',
+            title: 'Elegant Shoes',
+            description: 'High-quality leather shoes.',
         },
         {
+            id: 4,
             image: '/fashionimage/fashion4.png',
             price: '$950',
+            title: 'Fashion Bag',
+            description: 'Trendy handbag for all occasions.',
         },
     ]
+
+    const handleItermClick = (item :any) =>{
+        dispatch(setSelectedItem(item))
+        router.push(`/products/${item.id}`)
+
+    }
 
     return (
         <GContainer className="p-6 bg-[#F8FAFC]">
@@ -45,6 +74,7 @@ const Fashion = () => {
                 {fashions.map((fashion, index) => (
                     <GContainer
                         key={index}
+                        onClick={() =>handleItermClick(fashion)}
                         className="bg-white rounded-2xl w-[307px] md:w-[407px] h-auto md:h-[408px]  shadow-md hover:shadow-lg transition duration-300 p-4 flex flex-col justify-center items-center"
                     >
                         <GImage
