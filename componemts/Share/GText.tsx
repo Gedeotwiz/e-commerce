@@ -1,3 +1,4 @@
+'use client '
 import { COLOR_CONFIG } from '@/config/styles/tailwind-theme'
 import { ITypographyProps } from '@/lib/types/components/typograpth'
 import { FC, JSX } from 'react'

@@ -1,3 +1,4 @@
+'use client'
 import { StaticImport } from 'next/dist/shared/lib/get-img-props'
 import Image, { ImageProps } from 'next/image'
 import { FC, JSX } from 'react'

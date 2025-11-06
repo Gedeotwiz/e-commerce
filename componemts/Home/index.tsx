@@ -1,3 +1,4 @@
+'use client'
 import GContainer from '../Share/GContainer'
 import { Footer } from './Footer'
 import { HelloSection } from './HelloSection.tsx'
