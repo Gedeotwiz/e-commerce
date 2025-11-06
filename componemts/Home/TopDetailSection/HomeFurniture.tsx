@@ -3,6 +3,9 @@ import GContainer from '@/componemts/Share/GContainer'
 import GImage from '@/componemts/Share/GImage'
 import GText from '@/componemts/Share/GText'
 import { FaCartPlus } from 'react-icons/fa6'
+import { useDispatch } from 'react-redux'
+import { setSelectedItem } from '@/lib/rtk/slice/selectedSlice'
+import { useRouter } from 'next/navigation'
 
 /**
  * @since October 2025
@@ -11,23 +14,35 @@ import { FaCartPlus } from 'react-icons/fa6'
  */
 
 const HomeFurniture = () => {
+    const dispatch = useDispatch()
+    const router = useRouter()
+
+    const handleItermClick = (item: any) => {
+        dispatch(setSelectedItem(item))
+        router.push(`/products/${item.id}`)
+    }
+
     const chairs = [
         {
+            id: 1,
             image: '/homefurimage/tablechair.png',
             title: 'Modern Table Chair',
             price: '$812',
         },
         {
+            id: 2,
             image: '/homefurimage/chair.png',
             title: 'Comfort Chair',
             price: '$299',
         },
         {
+            id: 3,
             image: '/homefurimage/chair.png',
             title: 'Office Chair',
             price: '$450',
         },
         {
+            id: 4,
             image: '/homefurimage/chair.png',
             title: 'Gaming Chair',
             price: '$620',
@@ -61,6 +76,7 @@ const HomeFurniture = () => {
                     <GContainer className="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-6">
                         {chairs.map((chair, index) => (
                             <GContainer
+                                onClick={() => handleItermClick(chair)}
                                 key={index}
                                 className="bg-white shadow-md rounded-xl p-4 hover:shadow-lg transition duration-300 flex flex-col"
                             >

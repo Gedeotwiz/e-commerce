@@ -52,7 +52,7 @@ export const Heading = () => {
                     dimension="large"
                     onClick={() => router.push('/')}
                 >
-                    ALPHA
+                    GURA
                 </GText>
 
                 <nav className="hidden md:flex gap-10 items-center">

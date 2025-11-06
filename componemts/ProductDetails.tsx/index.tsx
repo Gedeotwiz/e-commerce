@@ -1,27 +1,27 @@
 'use client'
 
-import { useAppSelector } from '../../lib/rtk/redux/hook'
+import { useAppSelector } from '@/lib/rtk/hook'
 import { useRouter, useParams } from 'next/navigation'
 import GContainer from '@/componemts/Share/GContainer'
 import GImage from '@/componemts/Share/GImage'
 import GText from '@/componemts/Share/GText'
 import GButton from '@/componemts/Share/GButton'
-import { CiHeart } from "react-icons/ci";
+import { CiHeart } from 'react-icons/ci'
 import { FaCartPlus } from 'react-icons/fa'
 import { useEffect } from 'react'
 
-export default function FashionDetailPage() {
+export default function ProductDetail() {
     const router = useRouter()
     const params = useParams()
 
-    const item = useAppSelector((state: any) => state.fashion.selectedItem)
+    const item = useAppSelector((state: any) => state.selected.selectedItem)
 
     useEffect(() => {
         if (!item) {
             router.push('/')
         }
     }, [item, router])
-   if (!item) {
+    if (!item) {
         return (
             <GContainer className="flex items-center justify-center min-h-screen">
                 <GText>Loading...</GText>
@@ -69,27 +69,23 @@ export default function FashionDetailPage() {
                                 <GText>available</GText>
                             </GContainer>
                         </GContainer>
-                        <GContainer className='flex space-x-6'>
-                          <GContainer className='flex border rounded-md items-center space-x-2 px-1.5'>
-                            <GText>-</GText>
-                            <GText>1</GText>
-                            <GText>+</GText>
-
-                          </GContainer>
-                          <GContainer className='flex items-center space-x-2'>
-                            <CiHeart />
-                            <GText>Add to wishlist</GText>
-
-
-                          </GContainer>
-
+                        <GContainer className="flex space-x-6">
+                            <GContainer className="flex border rounded-md items-center space-x-2 px-1.5">
+                                <GText>-</GText>
+                                <GText>1</GText>
+                                <GText>+</GText>
+                            </GContainer>
+                            <GContainer className="flex items-center space-x-2">
+                                <CiHeart />
+                                <GText>Add to wishlist</GText>
+                            </GContainer>
                         </GContainer>
-                          <GButton
-                                className="px-4 py-2 w-full sm:w-auto text-white bg-[#0D9488] hover:bg-[#0B7B72] mt-4 transition rounded-full flex items-center justify-center"
-                                icon={<FaCartPlus />}
-                            >
-                                add to cut
-                            </GButton>
+                        <GButton
+                            className="px-4 py-2 w-full sm:w-auto text-white bg-[#0D9488] hover:bg-[#0B7B72] mt-4 transition rounded-full flex items-center justify-center"
+                            icon={<FaCartPlus />}
+                        >
+                            add to cut
+                        </GButton>
                     </GContainer>
                 </GContainer>
             </GContainer>
