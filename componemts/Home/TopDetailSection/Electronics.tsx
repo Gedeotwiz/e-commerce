@@ -2,6 +2,9 @@ import GContainer from '@/componemts/Share/GContainer'
 import GImage from '@/componemts/Share/GImage'
 import GText from '@/componemts/Share/GText'
 import { FaCartPlus } from 'react-icons/fa6'
+import { useDispatch } from 'react-redux'
+import { setSelectedItem } from '@/lib/rtk/slice/selectedSlice'
+import { useRouter } from 'next/navigation'
 
 /**
  * @since October 2025
@@ -10,16 +13,58 @@ import { FaCartPlus } from 'react-icons/fa6'
  */
 
 const electronics = [
-    { image: '/elcimage/phone.png', title: 'SAMSUNG GALAXY', price: '$812' },
-    { image: '/elcimage/watch.png', title: 'SMART WATCH', price: '$299' },
-    { image: '/elcimage/camera.png', title: 'DIGITAL CAMERA', price: '$650' },
-    { image: '/elcimage/phone.png', title: 'SAMSUNG GALAXY', price: '$812' },
-    { image: '/elcimage/phone.png', title: 'SAMSUNG GALAXY', price: '$812' },
-    { image: '/elcimage/phone.png', title: 'SAMSUNG GALAXY', price: '$812' },
-    { image: '/elcimage/phone.png', title: 'SAMSUNG GALAXY', price: '$812' },
+    {
+        id: 1,
+        image: '/elcimage/phone.png',
+        title: 'SAMSUNG GALAXY',
+        price: '$812',
+    },
+    {
+        id: 2,
+        image: '/elcimage/watch.png',
+        title: 'SMART WATCH',
+        price: '$299',
+    },
+    {
+        id: 3,
+        image: '/elcimage/camera.png',
+        title: 'DIGITAL CAMERA',
+        price: '$650',
+    },
+    {
+        id: 4,
+        image: '/elcimage/phone.png',
+        title: 'SAMSUNG GALAXY',
+        price: '$812',
+    },
+    {
+        id: 5,
+        image: '/elcimage/phone.png',
+        title: 'SAMSUNG GALAXY',
+        price: '$812',
+    },
+    {
+        id: 6,
+        image: '/elcimage/phone.png',
+        title: 'SAMSUNG GALAXY',
+        price: '$812',
+    },
+    {
+        id: 7,
+        image: '/elcimage/phone.png',
+        title: 'SAMSUNG GALAXY',
+        price: '$812',
+    },
 ]
 
 const Electronics = () => {
+    const dispatch = useDispatch()
+    const router = useRouter()
+
+    const handleItermClick = (item: any) => {
+        dispatch(setSelectedItem(item))
+        router.push(`/products/${item.id}`)
+    }
     return (
         <GContainer className="bg-[#E6EDED] py-6 px-6 md:px-10">
             <GText
@@ -35,6 +80,7 @@ const Electronics = () => {
                 {electronics.map((electronic, index) => (
                     <GContainer
                         key={index}
+                        onClick={() => handleItermClick(electronic)}
                         className="bg-white w-[284px] rounded-lg p-4 shadow hover:shadow-md transition duration-300 flex-shrink-0"
                     >
                         <GContainer className="flex justify-end">

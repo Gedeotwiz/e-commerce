@@ -5,7 +5,7 @@ import GImage from '@/componemts/Share/GImage'
 import GText from '@/componemts/Share/GText'
 import { FaCartPlus } from 'react-icons/fa6'
 import { useDispatch } from 'react-redux'
-import { setSelectedItem } from '@/lib/rtk/redux/features/fashionslice'
+import { setSelectedItem } from '@/lib/rtk/slice/selectedSlice'
 import { useRouter } from 'next/navigation'
 
 /**
@@ -14,10 +14,7 @@ import { useRouter } from 'next/navigation'
  * @see {@link :https://portfolio-ten-azure-76.vercel.app/} - Author's website
  */
 
-
-
 const Fashion = () => {
-
     const dispatch = useDispatch()
     const router = useRouter()
 
@@ -28,7 +25,6 @@ const Fashion = () => {
             price: '$812',
             title: 'Luxury Dress',
             description: 'Beautiful designer dress with modern fit.',
-            
         },
         {
             id: 2,
@@ -53,10 +49,9 @@ const Fashion = () => {
         },
     ]
 
-    const handleItermClick = (item :any) =>{
+    const handleItermClick = (item: any) => {
         dispatch(setSelectedItem(item))
         router.push(`/products/${item.id}`)
-
     }
 
     return (
@@ -74,7 +69,7 @@ const Fashion = () => {
                 {fashions.map((fashion, index) => (
                     <GContainer
                         key={index}
-                        onClick={() =>handleItermClick(fashion)}
+                        onClick={() => handleItermClick(fashion)}
                         className="bg-white rounded-2xl w-[307px] md:w-[407px] h-auto md:h-[408px]  shadow-md hover:shadow-lg transition duration-300 p-4 flex flex-col justify-center items-center"
                     >
                         <GImage

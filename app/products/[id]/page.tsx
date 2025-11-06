@@ -1,9 +1,9 @@
-import FashionDetailPage from '@/componemts/singlePage/SinglePage'
+import ProductDetail from '@/componemts/ProductDetails.tsx'
 
 const page = () => {
     return (
         <div>
-            <FashionDetailPage />
+            <ProductDetail />
         </div>
     )
 }

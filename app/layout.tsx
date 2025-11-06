@@ -27,10 +27,9 @@ export default function RootLayout({
                 className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             >
                 <AntdRegistry>
-                  <Providers>
-                   <GContainer>{children}</GContainer>
-                  </Providers>
-                    
+                    <Providers>
+                        <GContainer>{children}</GContainer>
+                    </Providers>
                 </AntdRegistry>
             </body>
         </html>

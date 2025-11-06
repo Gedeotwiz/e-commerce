@@ -4,21 +4,33 @@ import GText from '../Share/GText'
 import { ProductCard } from './ProductCard'
 import { Pagination } from 'antd'
 import { CgMenuMotion } from 'react-icons/cg'
+import IMoto from '@/public/image/moto.png'
+import { useDispatch } from 'react-redux'
+import { setSelectedItem } from '@/lib/rtk/slice/selectedSlice'
+import { useRouter } from 'next/navigation'
 
 export const AllProduct = () => {
+    const dispatch = useDispatch()
+    const router = useRouter()
+
     const products = [
-        { title: 'TVS', price: '1050' },
-        { title: 'TVS', price: '1050' },
-        { title: 'TVS', price: '1050' },
-        { title: 'TVS', price: '1050' },
-        { title: 'TVS', price: '1050' },
-        { title: 'TVS', price: '1050' },
-        { title: 'TVS', price: '1050' },
-        { title: 'TVS', price: '1050' },
-        { title: 'TVS', price: '1050' },
-        { title: 'TVS', price: '1050' },
-        { title: 'TVS', price: '1050' },
+        { id: 1, title: 'TVS', price: '1050', image: IMoto },
+        { id: 2, title: 'TVS', price: '1050', image: IMoto },
+        { id: 3, title: 'TVS', price: '1050', image: IMoto },
+        { id: 4, title: 'TVS', price: '1050', image: IMoto },
+        { id: 5, title: 'TVS', price: '1050', image: IMoto },
+        { id: 6, title: 'TVS', price: '1050', image: IMoto },
+        { id: 7, title: 'TVS', price: '1050', image: IMoto },
+        { id: 8, title: 'TVS', price: '1050', image: IMoto },
+        { id: 9, title: 'TVS', price: '1050', image: IMoto },
+        { id: 10, title: 'TVS', price: '1050', image: IMoto },
+        { id: 11, title: 'TVS', price: '1050', image: IMoto },
     ]
+
+    const handleItermClick = (item: any) => {
+        dispatch(setSelectedItem(item))
+        router.push(`/products/${item.id}`)
+    }
     return (
         <GContainer className="w-full">
             <GContainer className=" flex gap-5 px-5 md:px-10">
@@ -35,6 +47,8 @@ export const AllProduct = () => {
                         key={index}
                         title={product.title}
                         price={product.price}
+                        image={product.image}
+                        onClick={() => handleItermClick(product)}
                     />
                 ))}
             </GContainer>
