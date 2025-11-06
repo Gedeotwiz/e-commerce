@@ -23,7 +23,7 @@ export const Heading = () => {
 
     const navLinks = [
         { label: 'Home', href: '/' },
-        { label: 'Shops', href: '/shops' },
+        { label: 'Shops', href: '/shop' },
         { label: 'Products', href: '/products' },
     ]
 
@@ -37,7 +37,7 @@ export const Heading = () => {
         if (label === 'Account') {
             router.push('/authentication/login')
         } else if (label === 'Cart') {
-            router.push('/cart')
+            router.push('/shop')
         } else if (label === 'Wishlist') {
             router.push('/wishlist')
         }
