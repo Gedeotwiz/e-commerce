@@ -1,12 +1,14 @@
-import React, { ChangeEvent } from 'react'
-import GContainer from '../GContainer'
+'use client'
+
+import React, { ChangeEvent } from "react"
+import GContainer from "../GContainer"
 
 interface Props {
-    name: string
-    value: string
-    type: string
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void
-    placeholder: string
+  name: string
+  value: string
+  type: string
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void 
+  placeholder: string
 }
 
 /**
@@ -16,16 +18,16 @@ interface Props {
  */
 
 export const Input = ({ name, value, type, onChange, placeholder }: Props) => {
-    return (
-        <GContainer>
-            <input
-                name={name}
-                type={type}
-                placeholder={placeholder}
-                value={value}
-                onChange={onChange}
-                className="w-full bg-transparent border-b border-[#2E4F4F] outline-none py-2 text-[#2E4F4F] placeholder-[#708090] text-sm sm:text-base"
-            />
-        </GContainer>
-    )
+  return (
+    <GContainer>
+      <input
+        name={name}
+        type={type}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        className="w-full bg-transparent border-b border-[#2E4F4F] outline-none py-2 text-[#2E4F4F] placeholder-[#708090] text-sm sm:text-base"
+      />
+    </GContainer>
+  )
 }
