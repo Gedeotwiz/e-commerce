@@ -5,8 +5,8 @@ import GImage from '@/componemts/Share/GImage'
 import GText from '@/componemts/Share/GText'
 import { FaCartPlus } from 'react-icons/fa6'
 import { useDispatch } from 'react-redux'
-import { setSelectedItem } from '@/lib/rtk/slice/selectedSlice'
 import { useRouter } from 'next/navigation'
+import { addToCart } from '@/lib/rtk/slice/cartSlice'
 
 /**
  * @since October 2025
@@ -49,9 +49,16 @@ const Fashion = () => {
         },
     ]
 
-    const handleItermClick = (item: any) => {
-        dispatch(setSelectedItem(item))
-        router.push(`/products/${item.id}`)
+    const handleAddToCart = (item: any) => {
+      dispatch(
+        addToCart({
+          id: item.id,
+          title: item.title,
+          price: Number(item.price.replace('$', '')), 
+          image: item.image,
+          description: item.description,
+        })
+      )
     }
 
     return (
@@ -69,7 +76,6 @@ const Fashion = () => {
                 {fashions.map((fashion, index) => (
                     <GContainer
                         key={index}
-                        onClick={() => handleItermClick(fashion)}
                         className="bg-white rounded-2xl w-[307px] md:w-[407px] h-auto md:h-[408px]  shadow-md hover:shadow-lg transition duration-300 p-4 flex flex-col justify-center items-center"
                     >
                         <GImage
@@ -87,6 +93,7 @@ const Fashion = () => {
                             <GButton
                                 className="px-4 py-2 w-full sm:w-auto text-white bg-[#0D9488] hover:bg-[#0B7B72] transition rounded-full flex items-center justify-center"
                                 icon={<FaCartPlus />}
+                                onClick={()=>handleAddToCart(fashion)}
                             >
                                 Buy Now
                             </GButton>
