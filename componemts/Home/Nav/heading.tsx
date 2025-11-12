@@ -1,3 +1,4 @@
+
 'use client'
 
 import GContainer from '@/componemts/Share/GContainer'
@@ -9,6 +10,8 @@ import { SeaRchInput } from './seachInput'
 import { CiMenuFries } from 'react-icons/ci'
 import { useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/lib/rtk/store'
 
 /**
  * @since October 2025
@@ -20,6 +23,9 @@ export const Heading = () => {
     const [menuOpen, setMenuOpen] = useState(false)
     const pathname = usePathname()
     const router = useRouter()
+    
+    const cartItems = useSelector((state: RootState) => state.cart.items)
+    const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0)
 
     const navLinks = [
         { label: 'Home', href: '/' },
@@ -29,7 +35,7 @@ export const Heading = () => {
 
     const items = [
         { icon: <IoIosHeartEmpty />, label: 'Wishlist' },
-        { icon: <LuShoppingCart />, label: 'Cart' },
+        { icon: <LuShoppingCart />, label: 'Cart', count: cartItemCount },
         { icon: <FaRegCircleUser />, label: 'Account' },
     ]
 
@@ -82,10 +88,17 @@ export const Heading = () => {
                             <button
                                 key={index}
                                 onClick={() => handleClick(item.label)}
-                                className="flex flex-col items-center text-[#2C3E50] hover:text-[#4390A6] transition-colors"
+                                className="flex flex-col items-center text-[#2C3E50] hover:text-[#4390A6] transition-colors relative"
                                 aria-label={item.label}
                             >
-                                <div className="text-xl">{item.icon}</div>
+                                <div className="text-xl relative">
+                                    {item.icon}
+                                    {item.label === 'Cart' && cartItemCount > 0 && (
+                                        <span className="absolute -top-2 -right-2 bg-[#2C3333] text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+                                            {cartItemCount}
+                                        </span>
+                                    )}
+                                </div>
                                 <GText className="hidden sm:block text-xs">
                                     {item.label}
                                 </GText>

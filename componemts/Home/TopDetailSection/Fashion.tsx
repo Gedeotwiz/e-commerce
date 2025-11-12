@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/navigation'
 import { addToCart } from '@/lib/rtk/slice/cartSlice'
 
+
 /**
  * @since October 2025
  * @author NSHIMIYUMUKIZA Erneste <nshimiyumukizaerneste1@gmail.com>
