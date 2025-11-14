@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 // import { setSelectedItem } from '@/lib/rtk/slice/selectedSlice'
 import { useRouter } from 'next/navigation'
 import { addToCart } from '@/lib/rtk/slice/cartSlice'
+import { setSelectedItem } from '@/lib/rtk/slice/selectedSlice'
 
 /**
  * @since October 2025
@@ -70,22 +71,22 @@ const Electronics = () => {
     const dispatch = useDispatch()
     const router = useRouter()
 
-    // const handleItermClick = (item: any) => {
-    //     dispatch(setSelectedItem(item))
-    //     router.push(`/products/${item.id}`)
-    // }
+    const handleItermClick = (item: any) => {
+        dispatch(setSelectedItem(item))
+        router.push(`/products/${item.id}`)
+    }
 
-    const handleAddToCart = (item: any) => {
-  dispatch(
-    addToCart({
-      id: item.id,
-      title: item.title,
-      price: Number(item.price.replace('$', '')), 
-      image: item.image,
-      description: item.description,
-    })
-  )
-}
+//     const handleAddToCart = (item: any) => {
+//   dispatch(
+//     addToCart({
+//       id: item.id,
+//       title: item.title,
+//       price: Number(item.price.replace('$', '')), 
+//       image: item.image,
+//       description: item.description,
+//     })
+//   )
+// }
     return (
         <GContainer className="bg-[#E6EDED] py-6 px-6 md:px-10">
             <GText
@@ -101,7 +102,7 @@ const Electronics = () => {
                 {electronics.map((electronic, index) => (
                     <GContainer
                         key={index}
-                        // onClick={() => handleItermClick(electronic)}
+                         onClick={() => handleItermClick(electronic)}
                         className="bg-white w-[284px] rounded-lg p-4 shadow hover:shadow-md transition duration-300 flex-shrink-0"
                     >
                         <GContainer className="flex justify-end">
@@ -138,7 +139,7 @@ const Electronics = () => {
                                 {electronic.price}
                             </GText>
                             <FaCartPlus className="text-[#0D9488] text-xl cursor-pointer hover:scale-110 transition-transform"
-                             onClick={()=>handleAddToCart(electronic)}
+                            //  onClick={()=>handleAddToCart(electronic)}
                              />
                         </GContainer>
                     </GContainer>
