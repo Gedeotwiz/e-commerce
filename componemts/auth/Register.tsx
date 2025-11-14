@@ -9,6 +9,7 @@ import { Input } from '../Share/Input/Input'
 import { Title } from './Title'
 import { AuthButton } from './AuthButton'
 import { notification } from 'antd'
+import { useRegisterUserMutation } from '@/lib/rtk/api/api'
 
 /**
  * @since October 2025
@@ -19,8 +20,9 @@ import { notification } from 'antd'
 export default function RegisterPage() {
     const [api, contextHolder] = notification.useNotification()
     const [loading, setLoading] = useState(false)
+    const [regiserUser,{isLoading:isRegistering}] = useRegisterUserMutation()
     const [formData, setFormData] = useState({
-        name: '',
+        names: '',
         email: '',
         phone: '',
         address: '',
@@ -34,7 +36,7 @@ export default function RegisterPage() {
 
     const handleSubmit = async () => {
         if (
-            !formData.name ||
+            !formData.names ||
             !formData.email ||
             !formData.phone ||
             !formData.address ||
@@ -48,9 +50,10 @@ export default function RegisterPage() {
             return
         }
 
-        setLoading(true)
+    
         try {
-            await new Promise((res) => setTimeout(res, 2000))
+                setLoading(true)
+                const res = await regiserUser(formData).unwrap();
             api.open({
                 message: 'Login successful!',
                 description: 'Now you have access to buy products.',
@@ -60,7 +63,6 @@ export default function RegisterPage() {
             setLoading(false)
         }
     }
-
     return (
         <GContainer className="min-h-screen w-full flex flex-col md:flex-row bg-[#EAF6F6]">
             {contextHolder}
@@ -72,10 +74,10 @@ export default function RegisterPage() {
                         <form className="space-y-5">
                             <GContainer>
                                 <Input
-                                    name="name"
+                                    name="names"
                                     type="text"
                                     placeholder="Name"
-                                    value={formData.name}
+                                    value={formData.names}
                                     onChange={handleChange}
                                 />
                             </GContainer>
