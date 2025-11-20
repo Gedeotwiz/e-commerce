@@ -8,6 +8,7 @@ import { Title } from './Title'
 import { Input } from '../Share/Input/Input'
 import { useRouter } from 'next/navigation'
 import { notification } from 'antd'
+import { useForgotPasswordMutation } from '@/lib/redux/slice/apiSlice/auth/mutation'
 
 /**
  * @since October 2025
@@ -19,6 +20,7 @@ export default function ForgotPassword() {
     const router = useRouter()
     const [loading, setLoading] = useState(false)
     const [api, contextHolder] = notification.useNotification()
+    const [forgot] = useForgotPasswordMutation()
 
     const [formData, setFormData] = useState({
         email: '',
@@ -39,16 +41,17 @@ export default function ForgotPassword() {
             return
         }
 
-        setLoading(true)
         try {
-            await new Promise((res) => setTimeout(res, 2000))
+            setLoading(true)
+            const res = await forgot(formData).unwrap()
+            console.log(res)
             api.open({
-                message: 'Please check your email!',
+                message: res.message || 'Please check your email!',
                 description:
                     'Now we are sending otp code on this email go in box of your email.',
                 type: 'success',
             })
-            router.push('/authentication/verifyotp')
+            router.push(`/authentication/verifyotp?email=${formData.email}`);
         } finally {
             setLoading(false)
         }

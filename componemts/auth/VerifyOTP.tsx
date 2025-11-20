@@ -6,8 +6,9 @@ import GImage from '../Share/GImage'
 import GText from '../Share/GText'
 import { Title } from './Title'
 import { Input } from '../Share/Input/Input'
-import { useRouter } from 'next/navigation'
+import { useRouter} from 'next/navigation'
 import { notification } from 'antd'
+import { useVerifyOtpMutation } from '@/lib/redux/slice/apiSlice/auth/mutation'
 
 /**
  * @since October 2025
@@ -15,13 +16,18 @@ import { notification } from 'antd'
  * @see {@link https://portfolio-ten-azure-76.vercel.app/} - Author's website
  */
 
-export default function VErifyOTP() {
+interface props{
+    email:string | null
+}
+
+export default function VErifyOTP({email}:props) {
     const [loading, setLoading] = useState(false)
     const [api, contextHolder] = notification.useNotification()
     const router = useRouter()
+    const [verify]= useVerifyOtpMutation()
 
     const [formData, setFormData] = useState({
-        otp: '',
+       email:email || '', otp: '',
     })
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -41,13 +47,14 @@ export default function VErifyOTP() {
 
         setLoading(true)
         try {
-            await new Promise((res) => setTimeout(res, 2000))
+          const res =  await verify(formData).unwrap()
             api.open({
-                message: 'Otp verfication successful!',
+                message: res.message || 'Otp verfication successful!',
                 description: 'Now you have access to to change your password.',
                 type: 'success',
             })
-            router.push('/authentication/resentpassword')
+            router.push(`/authentication/resentpassword?email=${formData.email}&otp=${formData.otp}`);
+
         } finally {
             setLoading(false)
         }

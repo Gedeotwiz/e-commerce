@@ -1,13 +1,6 @@
-'use client'
-import VErifyOTP from '@/componemts/auth/VerifyOTP'
-import GContainer from '@/componemts/Share/GContainer'
 
-const page = () => {
-    return (
-        <GContainer>
-            <VErifyOTP />
-        </GContainer>
-    )
+import VerifyOtpWarpperWrapper from "@/componemts/wrapper/verifyOtp/VerifyOtpWrapper";
+
+export default function Page() {
+    return <VerifyOtpWarpperWrapper />;
 }
-
-export default page

@@ -6,7 +6,7 @@ import { Pagination } from 'antd'
 import { CgMenuMotion } from 'react-icons/cg'
 import IMoto from '@/public/image/moto.png'
 import { useDispatch } from 'react-redux'
-import { setSelectedItem } from '@/lib/rtk/slice/selectedSlice'
+import { setSelectedItem } from '@/lib/redux/slice/selectedSlice'
 import { useRouter } from 'next/navigation'
 
 export const AllProduct = () => {

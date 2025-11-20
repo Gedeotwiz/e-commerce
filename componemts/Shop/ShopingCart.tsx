@@ -3,7 +3,7 @@ import GContainer from "../Share/GContainer"
 import GText from "../Share/GText"
 import { SingleCartItem } from "./SingleCartItem"
 import { useSelector } from "react-redux"
-import { RootState } from "@/lib/rtk/store"
+import { RootState } from "@/lib/redux/store"
 
 export const ShopingCart = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items)

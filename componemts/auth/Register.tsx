@@ -9,7 +9,7 @@ import { Input } from '../Share/Input/Input'
 import { Title } from './Title'
 import { AuthButton } from './AuthButton'
 import { notification } from 'antd'
-import { useRegisterUserMutation } from '@/lib/rtk/api/api'
+import { useRegisterUserMutation } from '@/lib/redux/slice/apiSlice/auth/mutation'
 
 /**
  * @since October 2025
@@ -20,7 +20,7 @@ import { useRegisterUserMutation } from '@/lib/rtk/api/api'
 export default function RegisterPage() {
     const [api, contextHolder] = notification.useNotification()
     const [loading, setLoading] = useState(false)
-    const [regiserUser,{isLoading:isRegistering}] = useRegisterUserMutation()
+    const [regiserUser] = useRegisterUserMutation()
     const [formData, setFormData] = useState({
         names: '',
         email: '',
@@ -35,7 +35,7 @@ export default function RegisterPage() {
     }
 
     const handleSubmit = async () => {
-        if (
+        if (    
             !formData.names ||
             !formData.email ||
             !formData.phone ||
@@ -55,7 +55,7 @@ export default function RegisterPage() {
                 setLoading(true)
                 const res = await regiserUser(formData).unwrap();
             api.open({
-                message: 'Login successful!',
+                message: res.message,
                 description: 'Now you have access to buy products.',
                 type: 'success',
             })
@@ -144,7 +144,7 @@ export default function RegisterPage() {
                 <GContainer className="hidden md:block bg-[#2E4F4F] w-[300px] h-screen" />
             </GContainer>
 
-            <GContainer className=" hidden md:flex flex-1 items-center justify-center bg-[#2E4F4F] p-8 md:p-0 skew-x-[-15deg] absolute right-30 h-screen w-[800px]">
+            <GContainer className=" hidden md:flex flex-1 items-center justify-center bg-[#2E4F4F] p-8 md:p-0 skew-x-[-15deg] absolute right-30 h-screen  w-[800px]">
                 <GImage
                     width={500}
                     height={400}

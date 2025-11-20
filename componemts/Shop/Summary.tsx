@@ -6,7 +6,7 @@ import GText from "../Share/GText"
 import { notification } from "antd"
 import React from "react"
 import { useSelector } from "react-redux"
-import { RootState } from "@/lib/rtk/store"
+import { RootState } from "@/lib/redux/store"
 
 export const Summary = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items)

@@ -1,6 +1,6 @@
 'use client'
 
-import { useAppSelector } from '@/lib/rtk/hook'
+import { useAppSelector } from '@/lib/redux/hook'
 import { useRouter, useParams } from 'next/navigation'
 import GContainer from '@/componemts/Share/GContainer'
 import GImage from '@/componemts/Share/GImage'

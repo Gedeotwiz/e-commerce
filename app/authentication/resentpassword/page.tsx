@@ -1,14 +1,5 @@
-'use client'
-import ResentPassword from '@/componemts/auth/ResentPassword'
-import GContainer from '@/componemts/Share/GContainer'
-import React from 'react'
+import ResentPasswordWrapper from "@/componemts/wrapper/resentPassword/ResentPasswordWrapper";
 
-const page = () => {
-    return (
-        <GContainer>
-            <ResentPassword />
-        </GContainer>
-    )
+export default function Page() {
+    return <ResentPasswordWrapper />;
 }
-
-export default page
