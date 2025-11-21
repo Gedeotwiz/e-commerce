@@ -6,8 +6,9 @@ import GImage from '../Share/GImage'
 import GText from '../Share/GText'
 import { Title } from './Title'
 import { InputPassword } from '../Share/Input/InputPassword'
-import { useRouter } from 'next/navigation'
+import { useRouter,useSearchParams } from 'next/navigation'
 import { notification } from 'antd'
+import { useResetPasswordMutation } from '@/lib/redux/slice/apiSlice/auth/mutation'
 
 /**
  * @since October 2025
@@ -15,15 +16,24 @@ import { notification } from 'antd'
  * @see {@link :https://my-brand-twizerimana-gedeons-projects.vercel.app/} - Author's website
  */
 
-export default function ResentPassword() {
+interface props {
+    email: string | null
+    otp: string | null
+}
+
+export default function ResentPassword({ email,otp }:props) {
     const [loading, setLoading] = useState(false)
     const [api, contextHolder] = notification.useNotification()
     const router = useRouter()
 
-    const [formData, setFormData] = useState({
-        password: '',
-        confrimPassword: '',
-    })
+    const [resent]= useResetPasswordMutation()
+
+      const [formData, setFormData] = useState({
+        email: email || "",
+        otp: otp || "",
+        newPassword: "",
+        confirmPassword: "",
+    });
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
@@ -31,7 +41,7 @@ export default function ResentPassword() {
     }
 
     const handleSubmit = async () => {
-        if (formData.password !== formData.confrimPassword) {
+        if (formData.newPassword !== formData.confirmPassword) {
             api.open({
                 message: 'Missing Fields',
                 description:
@@ -43,7 +53,7 @@ export default function ResentPassword() {
 
         setLoading(true)
         try {
-            await new Promise((res) => setTimeout(res, 2000))
+           const res = await resent(formData).unwrap()
             api.open({
                 message: 'Password successful changed!',
                 description: 'Now you have to login using new password.',
@@ -65,18 +75,18 @@ export default function ResentPassword() {
                         <form className="space-y-6">
                             <GContainer>
                                 <InputPassword
-                                    name="password"
+                                    name="newPassword"
                                     placeholder="Password"
-                                    value={formData.password}
+                                    value={formData.newPassword}
                                     onChange={handleChange}
                                 />
                             </GContainer>
 
                             <GContainer>
                                 <InputPassword
-                                    name="confrimPassword"
+                                    name="confirmPassword"
                                     placeholder="confrim Password"
-                                    value={formData.confrimPassword}
+                                    value={formData.confirmPassword}
                                     onChange={handleChange}
                                 />
                             </GContainer>

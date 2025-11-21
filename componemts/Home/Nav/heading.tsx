@@ -11,7 +11,7 @@ import { CiMenuFries } from 'react-icons/ci'
 import { useState } from 'react'
 import { usePathname, useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
-import { RootState } from '@/lib/rtk/store'
+import { RootState } from '@/lib/redux/store'
 
 /**
  * @since October 2025
@@ -45,7 +45,7 @@ export const Heading = () => {
         } else if (label === 'Cart') {
             router.push('/shop')
         } else if (label === 'Wishlist') {
-            router.push('/wishlist')
+            router.push('/verifyemail')
         }
     }
 

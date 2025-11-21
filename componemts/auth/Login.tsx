@@ -9,6 +9,7 @@ import { Input } from '../Share/Input/Input'
 import { Title } from './Title'
 import { useRouter } from 'next/navigation'
 import { notification } from 'antd'
+import { useLoginMutation } from '@/lib/redux/slice/apiSlice/auth/mutation'
 
 /**
  * @since October 2025
@@ -20,6 +21,7 @@ export default function LoginPage() {
     const [loading, setLoading] = useState(false)
     const [api, contextHolder] = notification.useNotification()
     const router = useRouter()
+    const [login] = useLoginMutation()
 
     const [formData, setFormData] = React.useState({
         email: '',
@@ -40,23 +42,23 @@ export default function LoginPage() {
             })
             return
         }
-
-        setLoading(true)
         try {
-            await new Promise((res) => setTimeout(res, 2000))
+            setLoading(true)
+            const res = await login(formData).unwrap()
+            // const token = res.payload?.token
             api.open({
-                message: 'Login successful!',
+                message: res.message,
                 description: 'Now you have access to buy products.',
                 type: 'success',
             })
-            router.push('/products')
+            // router.push('/products')
         } finally {
             setLoading(false)
         }
     }
 
     return (
-        <GContainer className="min-h-screen md:flex bg-[#EAF6F6] relative">
+        <GContainer className="min-h-screen md:flex c relative">
             {contextHolder}
 
             <GContainer className="relative w-full flex flex-1 items-center justify-between py-12 md:py-0 overflow-hidden">

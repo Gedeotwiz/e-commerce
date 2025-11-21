@@ -5,8 +5,8 @@ import { FaCartPlus } from 'react-icons/fa6'
 import { useDispatch } from 'react-redux'
 // import { setSelectedItem } from '@/lib/rtk/slice/selectedSlice'
 import { useRouter } from 'next/navigation'
-import { addToCart } from '@/lib/rtk/slice/cartSlice'
-import { setSelectedItem } from '@/lib/rtk/slice/selectedSlice'
+import { addToCart } from '@/lib/redux/slice/cartSlice'
+import { setSelectedItem } from '@/lib/redux/slice/selectedSlice'
 
 /**
  * @since October 2025

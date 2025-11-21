@@ -3,7 +3,7 @@ import GImage from "../Share/GImage"
 import GText from "../Share/GText"
 import { FaPlus, FaMinus } from "react-icons/fa"
 import { useDispatch } from "react-redux"
-import { addToCart, decreaseQuantity, removeFromCart } from "@/lib/rtk/slice/cartSlice"
+import { addToCart, decreaseQuantity, removeFromCart } from "@/lib/redux/slice/cartSlice"
 
 interface Props {
   id: number

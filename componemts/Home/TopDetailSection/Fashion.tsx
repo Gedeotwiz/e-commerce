@@ -6,7 +6,7 @@ import GText from '@/componemts/Share/GText'
 import { FaCartPlus } from 'react-icons/fa6'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/navigation'
-import { addToCart } from '@/lib/rtk/slice/cartSlice'
+import { addToCart } from '@/lib/redux/slice/cartSlice'
 
 
 /**

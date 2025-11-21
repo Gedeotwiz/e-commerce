@@ -4,7 +4,7 @@ import GContainer from '@/componemts/Share/GContainer'
 import { FaAngleRight, FaAngleDown } from 'react-icons/fa'
 import GText from '@/componemts/Share/GText'
 import GImage from '@/componemts/Share/GImage'
-import { useGetCategoriesQuery, useGetSubcategoriesQuery } from '@/lib/rtk/api/api'
+import { useGetCategoriesQuery,useGetSubcategoriesQuery } from '@/lib/redux/slice/apiSlice/category/query'
 import { useState } from 'react'
 
 export const Gategories = () => {
